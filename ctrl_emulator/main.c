@@ -7,7 +7,6 @@
 #include <utility.h>
 #include <ansi_c.h>
 #include "main_UI.h"
-#include "demo_UI.h"
 #include "global.h"
 #include "tx_leakage_control.h"
 #include "Reader_protocol.h"
@@ -295,166 +294,6 @@ int main (int argc, char *argv[])
 	GetBitmapFromFile ("Cir.ico", &g_hCirBmp);
 	GetBitmapFromFile ("Tri.ico", &g_hTriBmp);
 	GetBitmapFromFile ("Axe.ico", &g_hAxeBmp);
-	
-	//printf("CRC5 test \r\n");
-	//for (i=1;i<=8;i++)
-	//{
-	//	printf(" result of %d = %x \r\n", i, calc_crc5_bits(0x18, 0x67, i)); 
-	//}
-	//printf("  %d", 41ul/40ul);
-	
-	//PushSPI(100);
-	//write_rfic_reg(1, 0x11);
-	
-	if(0)
-	{
-		OpenCom (1, "COM1");
-		for(i=0;i<100;i++)
-		{
-			ComWrtByte (1,i);
-		}
-		CloseCom (1);
-	}
-	
-	if(0)
-	{
-		for (i=70000;i>=20000;i-=1000)
-		{
-			unsigned int S = misc_log2((250000+(i>>1))/i);
-			unsigned int Fvco = i*(1<<S);
-			
-			printf("Wanted Fout= %d kHz		S=%d	Fvco=%d \n", i, S, Fvco);
-		}
-	}
-	
-	if(0)
-	{
-		unsigned int val_arm_clk;
-		for (val_arm_clk=70000;val_arm_clk>=60000;val_arm_clk-=300)
-		{
-		
-			unsigned int pll_P, pll_M;
-			unsigned int Fvco;//, Foutvco;
-			//unsigned int error=0;
-			unsigned int min_error = 0xFFFFFFFF;
-			
-			unsigned int sP=0;
-			unsigned int sM=0;
-			unsigned int sS=0;
-
-			sS = misc_log2((250000+(val_arm_clk>>1))/val_arm_clk);
-			if(sS >3) sS=3;
-			
-			Fvco = val_arm_clk*(1<<sS);
-
-
-			for(pll_P=64;pll_P>=3;pll_P--)
-			{
-				unsigned int temp32;
-				unsigned int F1,F2;
-				unsigned int minM, maxM, stepM;
-				
-				temp32 = Fvco * pll_P; 
-				
-				pll_M = (temp32 + (19200>>1))/19200;
-				
-				if(pll_P==8) 
-					Delay(0.1);
-				
-				if ((pll_M<28) || (pll_M>168)) 
-					continue;
-				else if(pll_P==8) 
-					Delay(0.1);
-				
-
-				F1 = 19200 * pll_M;
-				F2 = Fvco * pll_P;
-				
-				if (abs(F1-F2) < min_error)
-				{
-					min_error =  abs(F1-F2);
-					sP = pll_P;
-					sM = pll_M;
-				}
-				if (min_error == 0) 
-					break; 
-			}
-
-		printf("Wanted Fout= %d kHz  S=%d  Fvco=%d  M=%d  P=%d	error=%d \n", val_arm_clk, sS, Fvco, sM, sP, min_error); 	
-		
-		}
-	}
-	
-	//printf("%d ", ((int)3)/((int)2));
-	
-	while(0)
-	{
-		outp(0x378,0xFFFFFF);
-		Delay(3);
-		outp(0x378,0x000000);
-		Delay(3);
-	}
-	
-	if(0)
-	{
-		int source_file;//, target_file, debug_file;
-		unsigned char byte_buf[4];
-		unsigned char fill_val = 0x00;
-		int read_cnt;
-		unsigned int word;
-		int i,j;
-		unsigned int address =0;
-		unsigned int length = 0x6000;
-		FILE *target_file, *debug_file;
-		
-		
-
-		source_file = OpenFile ("d:\\gustaf\\procotol\\S3C4RU7_code\\S3C4RU1\\S3C4RU7_IntRom_IntRam.bin",VAL_READ_ONLY, VAL_OPEN_AS_IS, VAL_BINARY);
-		target_file = fopen ("d:\\gustaf\\procotol\\S3C4RU7_code\\S3C4RU1\\S3C4RU7_IntRom_IntRam.rom_format", "w");
-		debug_file = fopen ("d:\\gustaf\\procotol\\S3C4RU7_code\\S3C4RU1\\S3C4RU7_IntRom_IntRam.rom_format_debug", "w");
-
-		
-		while(address < length)
-		{
-			read_cnt = ReadFile (source_file, byte_buf, 4);
-			
-			//if (!read_cnt) 
-			//{
-			//	CloseFile (source_file);
-			//	fclose (target_file);
-			//	fclose (debug_file);
-			//	break;
-			//}
-			
-			if (read_cnt ==0)
-			{
-				byte_buf[0] = fill_val;
-				byte_buf[1] = fill_val;
-				byte_buf[2] = fill_val;
-				byte_buf[3] = fill_val;
-			}
-
-			word = (byte_buf[3]<<24)| (byte_buf[2]<<16)|(byte_buf[1]<<8)|(byte_buf[0]);
-		
-			//printf("%X %X %X %X     %X \r\n",byte_buf[3], byte_buf[2],byte_buf[1],byte_buf[0], word);
-		
-			fprintf(debug_file,"0x%08X	0x%08X	%d	: ",address, word, read_cnt);
-			address += 4;
-			
-			for(i=31;i>=0;i--)
-			{
-				fprintf(debug_file,"%d", (word>>i)&0x01);
-				fprintf(target_file,"%d", (word>>i)&0x01);
-			}
-			fprintf(debug_file,"\n");
-			fprintf(target_file,"\n");
-		}
-		
-		CloseFile (source_file);
-		fclose (target_file);  
-		fclose (debug_file);   
-	}
-
 	
 	Init_panel();
 	Init_variables();
@@ -859,148 +698,6 @@ int Download_image_CMC(void)
 	return 0;
 
 }
-int Download_image_S3C(void)
-{
-	int i;
-	int index;
-	int size;
-	int temp;
-	unsigned int check_sum = 0;
-	//int check_sum = 0;
-	////////////////////////////////////////////
-	//////////// download mini image ///////////
-	
-	//disable receive timer
-	//SetCtrlAttribute (panelMain, PANEL_MAIN_TIMER_RSP, ATTR_ENABLED, 0);
-	
-	//GetCtrlAttribute (panelMain, PANEL_MAIN_TIMER_RSP, ATTR_ENABLED, &temp); 
-	//printf("timer = %d \r\n",temp);
-	
-    //select image file
-    if (FileSelectPopup ("", "*.bin", "*.bin", "Select download image for S3C4RU1",
-						 VAL_OK_BUTTON, 0, 1, 1, 0, image_file) != 1)
-		return -1;
-	
-	GetFileSize (image_file,&image_size);
-	//read boot image file
-	
-	FileToArray (image_file, image_buff, VAL_UNSIGNED_CHAR, image_size, 1,
-				 VAL_GROUPS_TOGETHER, VAL_GROUPS_AS_COLUMNS, VAL_BINARY);
-	
-	FlushOutQ (ComPort);
-	FlushInQ (ComPort);
-	
-	
-	//Start download command
-	cmd.type = 0x03;	//Tx Msg type
-	cmd.code = 0xA0;	//Command code
-	cmd.payload_length = 0x02;	//Command payload length
-	cmd.payload[0]= 0x00;	//Command payload
-	cmd.payload[1]= 0x00;	//Command payload
-	
-	send_msg();
-	while(Check_msg()!=0);
-	
-	sprintf(str,"%s Start RAM image for S3C4RU1 \r\n", str);
-	SetCtrlVal (panelMain, PANEL_MAIN_TEXTBOX_STATUS, str);
-
-	
-	//Data download command
-	cmd.type = 0x03;	//Tx Msg type
-	cmd.code = 0xA1;	//Command code
-	
-	size = image_size;
-	index =0;
-	cmd.payload_length = 0x80;	//Command payload length
-	//cmd.payload_length = 0x40;	//Command payload length
-	
-	index =0;
-	while(size >= cmd.payload_length)
-	{
-		for(i=0;i<cmd.payload_length;i++)
-		{
-			cmd.payload[cmd.payload_length-1-i] = image_buff[i+cmd.payload_length*index];
-			//cmd.payload[0x80-1-i] = i%0x80;
-		}
-			
-		size -= cmd.payload_length;
-		index++;
-		
-		send_msg();
-		while(Check_msg()!=0);
-
-		if((index%20) == 0)
-		{
-			temp =  (image_size-size)*100/image_size;
-			sprintf(str,"%d %% downloaded \r", temp);
-			SetCtrlVal (panelMain, PANEL_MAIN_TEXTBOX_STATUS, str);
-		}
-		//if(index >= 126) 
-		//	 Delay(0.15);
-	}
-	
-	if(size)
-	{
-		for(i=0;i<cmd.payload_length-size;i++)
-			cmd.payload[i] = 0x00;
-		for(i=0;i<size;i++)
-			cmd.payload[cmd.payload_length-1-i] = image_buff[i+cmd.payload_length*index];
-		
-		send_msg();
-		while(Check_msg()!=0);
-		
-		size -= i;
-		index++;
-		
-		if((index%20) == 0)
-		{
-			temp =  (image_size-size)*100/image_size;
-			sprintf(str,"%d %% downloaded\r\n", temp);
-			SetCtrlVal (panelMain, PANEL_MAIN_TEXTBOX_STATUS, str);
-		}
-		
-		temp =  (image_size-size)*100/image_size;
-		sprintf(str,"%d %% downloaded\r\n", temp);
-		SetCtrlVal (panelMain, PANEL_MAIN_TEXTBOX_STATUS, str);
-	}
-	
-	while(index<21)
-	{
-		for(i=0;i<cmd.payload_length;i++)
-			cmd.payload[i] = 0x00;
-		send_msg();
-		while(Check_msg()!=0);
-		index++;
-	}
-	
-	//End download command
-	cmd.type = 0x03;	//Tx Msg type
-	cmd.code = 0xA2;	//Command code
-	cmd.payload_length = 0x02;	//Command payload length
-	
-	check_sum =0;
-	for(i=0;i<image_size;i+=4)		// calculate check-sum
-	{
-		if(i == (0x1000-0x0600)) break;		
-
-		check_sum = check_sum 
-				+ ((unsigned int)image_buff[i+3]<<24)
-				+ ((unsigned int)image_buff[i+2]<<16)
-				+ ((unsigned int)image_buff[i+1]<<8)
-				+ ((unsigned int)image_buff[i]);
-	}
-	cmd.payload[0] = check_sum&0xFF;
-	cmd.payload[1] = (check_sum>>8)&0xFF;
-
-	send_msg();
-	while(Check_msg() == -1);
-	
-	sprintf(str,"Transmit Check-sum. \r\n");
-	SetCtrlVal (panelMain, PANEL_MAIN_TEXTBOX_STATUS, str);
-	
-	return 0;
-
-}
 
 
 void CVICALLBACK W1_menu (int menuBar, int menuItem, void *callbackData,
@@ -1009,30 +706,14 @@ void CVICALLBACK W1_menu (int menuBar, int menuItem, void *callbackData,
 	switch(menuItem)
 	{
 		case W1_MENU_FILE_CMCDOWNLOAD:
-			if(Download_image_CMC()==0)
-		    {
-		    	;
-		    }
-		    else
-		    {
-		    	;
-		    }
 			break;
 		case W1_MENU_FILE_S3CDOWNLOAD:
-			if(Download_image_S3C()==0)
-		    {
-		    	;
-		    }
-		    else
-		    {
-		    	;
-		    }
 			break;
 		case W1_MENU_FILE_S3CDOWNLOAD1:
 			break;
 		case W1_MENU_CONFIG_RS232:
 			DisplayPanel (rsCP);
-			SetCtrlVal (rsCP, RS232_RINGSLIDE_PORT, ComPort);
+			SetCtrlVal (rsCP, RS232_RING_COMPORT, ComPort);
 			SetCtrlVal (rsCP, RS232_RINGSLIDE_BAUDRATE, BaudRate);
 			SetCtrlVal (rsCP, RS232_RINGSLIDE_PARITY, Parity);
 			SetCtrlVal (rsCP, RS232_RINGSLIDE_DATABITS, DataBits);
@@ -1153,7 +834,7 @@ void InitialRS(int ComPort,int BaudRate, int Parity, int DataBits, int StopBits,
 				SetCtrlVal (panelMain, PANEL_MAIN_TEXTBOX_STATUS, str);
 			}
 			
-			//InstallComCallback (ComPort, LWRS_RXFLAG, 0, (int)msg_preable, Check_msg_event, 0);		//for rx
+			InstallComCallback (ComPort, LWRS_RXFLAG, 0, (int)msg_preable, Check_msg_event, 0);		//for rx
 			//InstallComCallback (ComPort, LWRS_TXEMPTY, 0, (int)msg_preable, Check_tx_fifo, 0);		//for rx
 			
 		}
@@ -1178,7 +859,7 @@ int CVICALLBACK Rs_Config (int panel, int control, int event,
 		switch(control)
 		{
 			case RS232_BUTTON_CONFIGOK:
-				GetCtrlVal (rsCP, RS232_RINGSLIDE_PORT, &ComPort);
+				GetCtrlVal (rsCP, RS232_RING_COMPORT, &ComPort);
 				GetCtrlVal (rsCP, RS232_RINGSLIDE_BAUDRATE, &BaudRate);
 				GetCtrlVal (rsCP, RS232_RINGSLIDE_PARITY, &Parity);
 				GetCtrlVal (rsCP, RS232_RINGSLIDE_DATABITS, &DataBits);
@@ -1379,12 +1060,6 @@ int ReadRFICMapFromExcel(char *RegMapFileName)
 		goto Error;
 	
 	
-	//error = Excel_RangePrintPreview (ExcelRangeHandle, NULL, CA_DEFAULT_VAL, &MyVariant);
-	//if (error < 0) goto Error; 
-	///////////////////////////////////////////////////
-	///////////////////////////////////////////////////
-	
-	
 	//----------------------------------------------------------------
     // 1) Get each cell value in Range one at a time using an offset 
     //    from the range's top left cell
@@ -1395,68 +1070,7 @@ int ReadRFICMapFromExcel(char *RegMapFileName)
 	#define COLUMNS_END		8
 	
 	
-    //SetStdioWindowVisibility (1);
-	
-	/*
-    printf("Get one cell value at a time:\n");
-    for (i=0;i<ROW_END;i++)
-    {
-        printf("    ");
-        for (j=0;j<COLUMNS_END;j++)
-        {
-			char ContentsBuffer[100] = "   "; 
-			
-            // Ask for the ith by jth value of the range which returns a dispatch to a new single cell range
-            error = Excel_RangeGetItem (ExcelRangeHandle, &ErrorInfo, CA_VariantInt (i+1), CA_VariantInt (j+1), &MyVariant);
-            if (error<0) goto Error;
-            
-            // Get the DISPATCH pointer
-            error = CA_VariantGetDispatch (&MyVariant, &MyDispatch);
-            if (error<0) goto Error;
-            
-            // Create a new Range Object from DISPATCH pointer
-            error = CA_CreateObjHandleFromIDispatch (MyDispatch, 0, &ExcelSingleCellRangeHandle);
-            if (error<0) goto Error;
-            
-            // Get the value of the Single Cell Range
-            error = Excel_GetProperty (ExcelSingleCellRangeHandle, &ErrorInfo, Excel_RangeValue2, CAVT_VARIANT, &MyVariant);
-            if (error<0) goto Error;
-            
-            //if (!CA_VariantHasDouble (&MyVariant))
-			//if (!CA_VariantHasCString (&MyVariant))
-			if (!(CA_VariantHasCString(&MyVariant) || CA_VariantHasNull (&MyVariant)|| CA_VariantIsEmpty (&MyVariant)))
-            {
-                MessagePopup("Warning", "Values returned were not of type String.");
-                goto Error;
-            }    
-            
-            //error = CA_VariantGetDouble (&MyVariant, &d);
-			//error = CA_VariantGetDouble (&MyVariant, &d);
-			if(CA_VariantHasCString(&MyVariant))
-			{
-				
-				error = CA_VariantGetCStringBuf (&MyVariant, ContentsBuffer, 100);
-				//Excel_GetProperty (ExcelSingleCellRangeHandle, &ErrorInfo, Excel_InteriorColor, CAVT_VARIANT, &MyVariantColor); 
-				
-			}
-			
-            if (error<0) goto Error;
-        
-            // Free Variant element
-            CA_VariantClear(&MyVariant);
-			CA_VariantClear(&MyVariantColor);
-            
-            //Free Range Handle
-            ClearObjHandle (&ExcelSingleCellRangeHandle);
-            
-            //printf("%f ", d);
-			printf("%s ", ContentsBuffer);
-			SetTableCellVal (panelRFIC, PANEL_RFIC_TABLE_RF_REGMAP, MakePoint (j+3,i+1), ContentsBuffer);
-        }
-        printf("\n");
-    }    
-    printf("\n");
-	*/
+  
 	
 	
 	

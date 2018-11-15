@@ -4,8 +4,6 @@
 #include <ansi_c.h>
 #include <userint.h>
 #include "main_UI.h"
-#include "TLC_UI.h"
-#include "demo_UI.h"
 #include "global.h"
 #include "Reader_protocol.h"
 #include "tx_leakage_control.h"
@@ -301,6 +299,30 @@ void UpDateDialogFromNts(void)
 		//SetCtrlAttribute (panelTable, PANEL_TBL_TIMER_TBL_REFRESH, ATTR_ENABLED, val);  //disable timed-refresh timer	
 	}
 	
+}
+
+void CVICALLBACK Check_msg_event (int COMPort, int eventMask, void *callbackData)
+{
+	unsigned short temp16a, temp16b; 
+	
+
+	if (eventMask & LWRS_RXFLAG)
+	//while (eventMask & LWRS_RXFLAG)
+	{
+		//if(Check_msg()==0)	//success
+		//{
+			
+		//}//end if (eventMask & LWRS_RXFLAG)
+		
+		check_msg_flag =  Check_msg();
+		
+		//하나씩 밀리는 버그 해결
+		
+		if (GetInQLen(ComPort))
+			check_msg_flag =  Check_msg();
+		
+	}
+
 }
 
 int Check_msg(void)
@@ -655,102 +677,6 @@ int CVICALLBACK Msg_config (int panel, int control, int event,
 
 	}
 	return 0;
-}
-
-void parameter_setting_for_demo(void)
-{
-	unsigned char delay_time = 0;
-	unsigned short int read_cycle = 0x0004;
-	unsigned char slot_Q = 3;
-	//MessagePopup ("Version check", "Your firmware version can use the TLC function");
-	//준비 단계
-	
-	//reader connection
-	cmd.type = 0x00;
-	cmd.code = 0x02;
-	cmd.payload_length = 0x0001;
-	cmd.payload[0]=0xFF;
-	send_msg();
-	while(Check_msg()!=0);
-	
-	//set read cycle, delay
-	cmd.type = 0x00;
-	cmd.code = 0x12;
-	cmd.payload_length = 0x0003;
-	cmd.payload[2]=read_cycle>>8;	//read cycle MSB
-	cmd.payload[1]=read_cycle;		//read cycle LSB
-	cmd.payload[0]=delay_time;		//delay time
-	send_msg();
-	while(Check_msg()!=0);
-
-
-	
-	//set frequency. 911.25MHz -->  BB 00 A2 0001 0D 7E
-	cmd.type = 0x00;
-	cmd.code = 0xA2;
-	cmd.payload_length = 0x0001;
-	cmd.payload[0]=0x0D;
-	send_msg();
-	while(Check_msg()!=0);
-
-	
-	//hopping off. --> BB 00 F0 0002 06 00 7E
-	cmd.type = 0x00;
-	cmd.code = 0xF2;
-	cmd.payload_length = 0x0002;
-	cmd.payload[1]=0x06;
-	cmd.payload[0]=0x00;
-	send_msg();
-	while(Check_msg()!=0);
-
-	
-	
-	//set Rx BB gain --> BB 00 E9 0002 02 2E 7E
-	cmd.type = 0x00;
-	cmd.code = 0xE9;
-	cmd.payload_length = 0x0002;
-	cmd.payload[1]=0x02;
-	cmd.payload[0]=0x2E;
-	send_msg();
-	while(Check_msg()!=0);
-	SetCtrlVal (panelLM, PANEL_LM_NUMERIC_BB_GAIN, 0x2E);
-	
-	
-	//set tx DA gain --> BB 00 E9 0002 03 0D 7E
-	cmd.type = 0x00;
-	cmd.code = 0xE9;
-	cmd.payload_length = 0x0002;
-	cmd.payload[1]=0x03;
-	cmd.payload[0]=0x0D;
-	send_msg();
-	while(Check_msg()!=0);
-	SetCtrlVal (panelLM, PANEL_LM_RING_DAGAIN, 13);
-	
-	//LNA on --> BB 00 E7 0002 05 FF 7E
-	cmd.type = 0x00;
-	cmd.code = 0xE7;
-	cmd.payload_length = 0x0002;
-	cmd.payload[1]=0x05;
-	cmd.payload[0]=0xFF;
-	send_msg();
-	while(Check_msg()!=0);
-	SetCtrlVal (panelLM, PANEL_LM_TOGGLEBUTTON_LNAPOWER, 1);
-	
-	//set Q
-	//기존 setting read
-	//send command
-	cmd.type = 0x00;
-	cmd.code = 0x0D;	  //Get Type C A/I inventory parameters
-	cmd.payload_length = 0x00;	//payload length
-	send_msg();
-	while(Check_msg()!=0);
-	//새로운 값 반영   
-	cmd.code = 0x0E;	  //Set Type C A/I inventory parameters
-	cmd.payload_length = 0x02;	//payload length
-	cmd.payload[1] = rsp.payload[1];
-	cmd.payload[0] = ((rsp.payload[0])&(0xF0))|(slot_Q);
-	send_msg();
-	while(Check_msg()!=0);
 }
 
 

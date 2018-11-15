@@ -90,14 +90,14 @@
 #define  PANEL_SPIM_DIGGRAPH_SPIM         2       /* control type: digitalGraph, callback function: (none) */
 
 #define  RS232                            5       /* callback function: Panel_pd */
-#define  RS232_RINGSLIDE_PORT             2       /* control type: slide, callback function: (none) */
-#define  RS232_RINGSLIDE_BAUDRATE         3       /* control type: slide, callback function: (none) */
-#define  RS232_BUTTON_CONFIGCANCEL        4       /* control type: command, callback function: Rs_Config */
-#define  RS232_BUTTON_CONFIGOK            5       /* control type: command, callback function: Rs_Config */
-#define  RS232_RINGSLIDE_PARITY           6       /* control type: slide, callback function: (none) */
-#define  RS232_RINGSLIDE_DATABITS         7       /* control type: slide, callback function: (none) */
-#define  RS232_RINGSLIDE_STOPBIT          8       /* control type: slide, callback function: (none) */
-#define  RS232_RING_OUTPUTQ               9       /* control type: numeric, callback function: (none) */
+#define  RS232_RINGSLIDE_BAUDRATE         2       /* control type: slide, callback function: (none) */
+#define  RS232_BUTTON_CONFIGCANCEL        3       /* control type: command, callback function: Rs_Config */
+#define  RS232_BUTTON_CONFIGOK            4       /* control type: command, callback function: Rs_Config */
+#define  RS232_RINGSLIDE_PARITY           5       /* control type: slide, callback function: (none) */
+#define  RS232_RINGSLIDE_DATABITS         6       /* control type: slide, callback function: (none) */
+#define  RS232_RINGSLIDE_STOPBIT          7       /* control type: slide, callback function: (none) */
+#define  RS232_RING_OUTPUTQ               8       /* control type: numeric, callback function: (none) */
+#define  RS232_RING_COMPORT               9       /* control type: numeric, callback function: (none) */
 #define  RS232_RING_INPUTQ                10      /* control type: numeric, callback function: (none) */
 #define  RS232_RING_TIMEOUT               11      /* control type: numeric, callback function: (none) */
 

@@ -7,7 +7,6 @@
 //#include <ansi_c.h>
 //#include <userint.h>
 //#include "main_UI.h"
-#include "TLC_UI.h"
 #include "global.h"
 #include "tx_leakage_control.h"
 			 
@@ -53,7 +52,7 @@ double DA_power_value[16] = {-50,-6.3,-3.23, -1.09, -0.2, 0, 0, 4.16, 0, -5.23, 
 double BB_gain_offset = 0x2F+6;
 
 
-
+/*
 int CVICALLBACK Leakage_control (int panel, int control, int event,
 		void *callbackData, int eventData1, int eventData2)
 {
@@ -285,7 +284,7 @@ int CVICALLBACK Leakage_control (int panel, int control, int event,
 	}
 	return 0;
 }
-
+*/
 int CVICALLBACK Panel_LeakageControl (int panel, int event, void *callbackData,
 		int eventData1, int eventData2)
 {
@@ -305,77 +304,8 @@ int CVICALLBACK Panel_LeakageControl (int panel, int event, void *callbackData,
 	return 0;
 }
 
-int CVICALLBACK Panel_VGA (int panel, int event, void *callbackData,
-		int eventData1, int eventData2)
-{
-	switch (event)
-		{
-		case EVENT_GOT_FOCUS:
-			break;
-		case EVENT_LOST_FOCUS:
-			break;
-		case EVENT_CLOSE:
-			DeleteGraphPlot (panelVGASWP, PANEL_VGA_GRAPH_VGA_SWEEP, plot_handle_vga_arm_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVGASWP, PANEL_VGA_GRAPH_VGA_SWEEP, plot_handle_vga_I_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVGASWP, PANEL_VGA_GRAPH_VGA_SWEEP, plot_handle_vga_Q_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVGASWP, PANEL_VGA_GRAPH_VGA_SWEEP, plot_handle_vga_com_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVGASWP, PANEL_VGA_GRAPH_VGA_SWEEP2, plot_handle_vga_arm_phase, VAL_IMMEDIATE_DRAW);
-			HidePanel (panelVGASWP);
-			VGA_sweep_flag =0;
-			Receive_TLC_info =0;
-			vga_sweep_cnt =0;
-			break;
-		}
-	return 0;
-}
-int CVICALLBACK Panel_VPS1 (int panel, int event, void *callbackData,
-		int eventData1, int eventData2)
-{
-	switch (event)
-		{
-		case EVENT_GOT_FOCUS:
-			break;
-		case EVENT_LOST_FOCUS:
-			break;
-		case EVENT_CLOSE:
-			DeleteGraphPlot (panelVPS1SWP, PANEL_VPS1_GRAPH_VPS1_SWEEP, plot_handle_vps1_arm_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVPS1SWP, PANEL_VPS1_GRAPH_VPS1_SWEEP, plot_handle_vps1_I_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVPS1SWP, PANEL_VPS1_GRAPH_VPS1_SWEEP, plot_handle_vps1_Q_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVPS1SWP, PANEL_VPS1_GRAPH_VPS1_SWEEP, plot_handle_vps1_com_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVPS1SWP, PANEL_VPS1_GRAPH_VPS1_SWEEP2, plot_handle_vps1_arm_phase, VAL_IMMEDIATE_DRAW);
-			HidePanel (panelVPS1SWP);
-			VPS1_sweep_flag =0;
-			Receive_TLC_info =0;
-			vps1_sweep_cnt =0;
-			break;
-		}
-	return 0;
-}
 
-int CVICALLBACK Panel_VPS2 (int panel, int event, void *callbackData,
-		int eventData1, int eventData2)
-{
-	switch (event)
-		{
-		case EVENT_GOT_FOCUS:
-			break;
-		case EVENT_LOST_FOCUS:
-			break;
-		case EVENT_CLOSE:
-			DeleteGraphPlot (panelVPS2SWP, PANEL_VPS2_GRAPH_VPS2_SWEEP, plot_handle_vps2_arm_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVPS2SWP, PANEL_VPS2_GRAPH_VPS2_SWEEP, plot_handle_vps2_I_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVPS2SWP, PANEL_VPS2_GRAPH_VPS2_SWEEP, plot_handle_vps2_Q_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVPS2SWP, PANEL_VPS2_GRAPH_VPS2_SWEEP, plot_handle_vps2_com_mag, VAL_IMMEDIATE_DRAW);
-			DeleteGraphPlot (panelVPS2SWP, PANEL_VPS2_GRAPH_VPS2_SWEEP2, plot_handle_vps2_arm_phase, VAL_IMMEDIATE_DRAW);
-			HidePanel (panelVPS2SWP);
-			VPS2_sweep_flag =0;
-			Receive_TLC_info =0;
-			vps2_sweep_cnt =0;
-			break;
-		}
-	return 0;
-}
-
+/*
 int CVICALLBACK TLC_sweep_search (int panel, int control, int event,
 		void *callbackData, int eventData1, int eventData2)
 {
@@ -409,8 +339,8 @@ int CVICALLBACK TLC_sweep_search (int panel, int control, int event,
 		}
 	return 0;
 }
-
-
+*/
+/*
 void VGA_sweep_search(void)
 {
 	int temp16;
@@ -563,337 +493,7 @@ void VGA_sweep_search(void)
 		
 	}
 }
+*/
 
 int temp_array[256]={0};
-
-void VPS1_sweep_search(void)
-{
-	int temp16;
-	unsigned char temp8;
-	float temp_float;
-	char str[100];
-	int vps1_adj_100;
-	
-	
-	if((vps1_sweep_cnt==0)&&(Receive_TLC_info ==0))
-	{
-		//1. DAC control
-		cmd.type = 0x00;
-		cmd.code = 0xEA;	//exteranl TLC block
-		cmd.payload_length = 0x02;
-		cmd.payload[1] = 02;	//VPS1 gain
-		SetCtrlVal (panelLM, PANEL_LM_NUMERIC_VPS1, vps1_sweep_cnt);
-		cmd.payload[0] = vps1_sweep_cnt;
-		Fmt (str, "%f%s", ((double)vps1_sweep_cnt)*2.8/255,"[V]");
-		SetCtrlVal (panelLM, PANEL_LM_TEXTMSG_VPS1CTRL, str);
-		send_msg();
-		
-		Delay(0.03);
-		
-		//2. measure command
-		cmd.type = 0x00;
-		cmd.code = 0xE1;	//Auto-leakage measure
-		cmd.payload_length = 0x00;	//payload length
-		send_msg();
-		
-		
-		vps1_sweep_cnt++;
-	
-	}
-	
-	else if((vps1_sweep_cnt!=0)&&(Receive_TLC_info ==1))
-	{
-		GetCtrlVal (panelLM, PANEL_LM_NUMERIC_MSG_LM_MAG, &temp16);
-		if(temp16 == 0) temp16=1;
-		////////////////////// 보정 
-		
-		if(vps1_sweep_cnt-1<64)//  ~0.9v
-		{
-			//magnitude = magnitude*(1 + 2*(64-i)/64);  //+6dB?
-			//vps1_adj_100 = (100*(64-vps1_sweep_cnt+1)*(64-vps1_sweep_cnt+1))/64/64;
-			vps1_adj_100 = (50*(64-vps1_sweep_cnt+1)*(64-vps1_sweep_cnt+1))/64/64;
-			
-		}
-		else if((vps1_sweep_cnt-1>=64)&&(vps1_sweep_cnt-1<80))  //0.9v~1.125v
-		{
-			vps1_adj_100 = 0; //변화 없음
-		}
-		else if(vps1_sweep_cnt-1>=80) // 1.125v ~
-		{
-			//magnitude = magnitude*(1 + 2*(i-80)/(256-80));  //+6dB?
-			//vps1_adj_100 = (100*(vps1_sweep_cnt-1-80)*(vps1_sweep_cnt-1-80))/(256-80)/(256-80);
-			vps1_adj_100 = (100*(vps1_sweep_cnt-1-80)*(vps1_sweep_cnt-1-80))/(256-80)/(256-80);
-		}
-		
-		temp16 = (temp16*(300+vps1_adj_100))/400;
-		
-		temp_array[vps1_sweep_cnt-1]= 2*vps1_adj_100/100;
-		
-		if(vps1_sweep_cnt == 256)
-		;
-					
-
-		/////////////////////////////////
-		if(dB_scale_on)
-			arm_magnitude_swp[vps1_sweep_cnt-1] = 20*log10((double)temp16/128) + BB_gain_offset;
-		else 
-			arm_magnitude_swp[vps1_sweep_cnt-1] = temp16;
-		//arm_magnitude_swp[vps1_sweep_cnt-1] = 10*log10((double)temp16/256*(double)temp16/256) + 30;
-		
-		GetCtrlVal (panelLM, PANEL_LM_NUMERIC_VAR_I, &temp8);
-		if (temp8 ==0) temp8 = 1;
-		
-		
-		if(dB_scale_on)
-			I_magnitude_swp[vps1_sweep_cnt-1] = 20*log10((double)temp8/128) + BB_gain_offset;
-		else
-			I_magnitude_swp[vps1_sweep_cnt-1] = temp8;
-			
-		GetCtrlVal (panelLM, PANEL_LM_NUMERIC_VAR_Q, &temp8);
-		if (temp8 ==0) temp8 = 1;
-		
-		if(dB_scale_on)
-			Q_magnitude_swp[vps1_sweep_cnt-1] = 20*log10((double)temp8/128) + BB_gain_offset;
-		else 
-			Q_magnitude_swp[vps1_sweep_cnt-1] = temp8;
-		
-		com_magnitude_swp[vps1_sweep_cnt-1] = sqrt(I_magnitude_swp[vps1_sweep_cnt-1]*I_magnitude_swp[vps1_sweep_cnt-1]+Q_magnitude_swp[vps1_sweep_cnt-1]*Q_magnitude_swp[vps1_sweep_cnt-1]);
-		if(dB_scale_on)
-			com_magnitude_swp[vps1_sweep_cnt-1] = 20*log10((double)com_magnitude_swp[vps1_sweep_cnt-1]/128) + BB_gain_offset;
-		
-		GetCtrlVal (panelLM, PANEL_LM_NUMERIC_MSG_PHASE, &temp_float);
-		arm_phase_swp[vps1_sweep_cnt-1] =  temp_float;
-		
-		if(vps1_sweep_cnt%2 ==0)
-		{
-			Fmt (str, "%d%s", (int)((double)(vps1_sweep_cnt-1)/255*100),"[%]");
-			SetCtrlVal (panelVPS1SWP, PANEL_VPS1_TEXTMSG_VPS1SWP, str);
-		}
-		
-		if(vps1_sweep_cnt == 256)
-		{
-			plot_handle_vps1_arm_mag = PlotXY (panelVPS1SWP,
-											   PANEL_VPS1_GRAPH_VPS1_SWEEP,
-											   control_x, arm_magnitude_swp, 256,
-											   VAL_DOUBLE, VAL_DOUBLE,
-											   VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											   VAL_SOLID, 1, VAL_RED);
-	    			
-			plot_handle_vps1_I_mag = PlotXY (panelVPS1SWP,
-											 PANEL_VPS1_GRAPH_VPS1_SWEEP,
-											 control_x, I_magnitude_swp, 256,
-											 VAL_DOUBLE, VAL_DOUBLE,
-											 VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											 VAL_SOLID, 1, VAL_BLUE);
-	    	
-			plot_handle_vps1_Q_mag = PlotXY (panelVPS1SWP,
-											 PANEL_VPS1_GRAPH_VPS1_SWEEP,
-											 control_x, Q_magnitude_swp, 256,
-											 VAL_DOUBLE, VAL_DOUBLE,
-											 VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											 VAL_SOLID, 1, VAL_GREEN);
-	    	
-			plot_handle_vps1_com_mag = PlotXY (panelVPS1SWP,
-											   PANEL_VPS1_GRAPH_VPS1_SWEEP,
-											   control_x, com_magnitude_swp, 256,
-											   VAL_DOUBLE, VAL_DOUBLE,
-											   VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											   VAL_SOLID, 1, VAL_DK_RED);
-			
-			plot_handle_vps1_arm_phase = PlotXY (panelVPS1SWP,
-											  PANEL_VPS1_GRAPH_VPS1_SWEEP2,
-											  control_x, arm_phase_swp, 256,
-											  VAL_DOUBLE, VAL_DOUBLE,
-											  VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											  VAL_SOLID, 1, VAL_RED);
-	    			
-	    	VPS1_sweep_flag =0;
-	    	vps1_sweep_cnt =0;
-	    	
-	    	Fmt (str, "%d%s", 100,"[%]");
-			SetCtrlVal (panelVPS1SWP, PANEL_VPS1_TEXTMSG_VPS1SWP, str);
-		}
-		
-
-		
-		Receive_TLC_info = 0;
-		
-		
-		if(vps1_sweep_cnt<256)
-		{
-			//1. DAC control
-			cmd.type = 0x00;
-			cmd.code = 0xEA;	//exteranl TLC block
-			cmd.payload_length = 0x02;
-			cmd.payload[1] = 02;	//VPS1 gain
-			SetCtrlVal (panelLM, PANEL_LM_NUMERIC_VPS1, vps1_sweep_cnt);
-			cmd.payload[0] = vps1_sweep_cnt;
-			Fmt (str, "%f%s", ((double)vps1_sweep_cnt)*2.8/255,"[V]");
-			SetCtrlVal (panelLM, PANEL_LM_TEXTMSG_VPS1CTRL, str);
-			send_msg();
-			
-			Delay(0.03);
-			
-			//2. measure command
-			cmd.type = 0x00;
-			cmd.code = 0xE1;	//Auto-leakage measure
-			cmd.payload_length = 0x00;	//payload length
-			send_msg();
-			
-			vps1_sweep_cnt++;
-			
-		}
-		
-	}
-}
-
-void VPS2_sweep_search(void)
-{
-	int temp16;
-	unsigned char temp8;
-	float temp_float;
-	char str[100];
-	
-	if((vps2_sweep_cnt==0)&&(Receive_TLC_info ==0))
-	{
-		//1. DAC control
-		cmd.type = 0x00;
-		cmd.code = 0xEA;	//exteranl TLC block
-		cmd.payload_length = 0x02;
-		cmd.payload[1] = 03;	//VPS2 gain
-		SetCtrlVal (panelLM, PANEL_LM_NUMERIC_VPS2, vps2_sweep_cnt);
-		cmd.payload[0] = vps2_sweep_cnt;
-		Fmt (str, "%f%s", ((double)vps2_sweep_cnt)*2.8/255,"[V]");
-		SetCtrlVal (panelLM, PANEL_LM_TEXTMSG_VPS2CTRL, str);
-		send_msg();
-		
-		Delay(0.03);
-		
-		//2. measure command
-		cmd.type = 0x00;
-		cmd.code = 0xE1;	//Auto-leakage measure
-		cmd.payload_length = 0x00;	//payload length
-		send_msg();
-		
-		
-		vps2_sweep_cnt++;
-	
-	}
-	
-	else if((vps2_sweep_cnt!=0)&&(Receive_TLC_info ==1))
-	{
-		GetCtrlVal (panelLM, PANEL_LM_NUMERIC_MSG_LM_MAG, &temp16);
-		if(temp16 == 0) temp16=1;
-
-		if(dB_scale_on)	
-			arm_magnitude_swp[vps2_sweep_cnt-1] = 20*log10((double)temp16/128) + BB_gain_offset;
-		else 
-		arm_magnitude_swp[vps2_sweep_cnt-1] =  temp16;
-		//arm_magnitude_swp[vps2_sweep_cnt-1] = 10*log10((double)temp16/256*(double)temp16/256) + 30;
-		
-		GetCtrlVal (panelLM, PANEL_LM_NUMERIC_VAR_I, &temp8);
-		if (temp8 ==0) temp8 = 1;
-		
-		if(dB_scale_on)	
-			I_magnitude_swp[vps2_sweep_cnt-1] = 20*log10((double)temp8/128) + BB_gain_offset;
-		else 
-			I_magnitude_swp[vps2_sweep_cnt-1] = temp8;
-		
-		GetCtrlVal (panelLM, PANEL_LM_NUMERIC_VAR_Q, &temp8);
-		if (temp8 ==0) temp8 = 1;
-		
-		if(dB_scale_on)	
-			Q_magnitude_swp[vps2_sweep_cnt-1] = 20*log10((double)temp8/128) + BB_gain_offset;
-		else 
-			Q_magnitude_swp[vps2_sweep_cnt-1] = temp8;
-			
-		com_magnitude_swp[vps2_sweep_cnt-1] = sqrt(I_magnitude_swp[vps2_sweep_cnt-1]*I_magnitude_swp[vps2_sweep_cnt-1]+Q_magnitude_swp[vps2_sweep_cnt-1]*Q_magnitude_swp[vps2_sweep_cnt-1]);
-		if(dB_scale_on)
-			com_magnitude_swp[vps2_sweep_cnt-1] = 20*log10((double)com_magnitude_swp[vps2_sweep_cnt-1]/128) + BB_gain_offset;
-		
-		GetCtrlVal (panelLM, PANEL_LM_NUMERIC_MSG_PHASE, &temp_float);
-		arm_phase_swp[vps2_sweep_cnt-1] =  temp_float;
-		
-		if(vps2_sweep_cnt%2 ==0)
-		{
-			Fmt (str, "%d%s", (int)((double)(vps2_sweep_cnt-1)/255*100),"[%]");
-			SetCtrlVal (panelVPS2SWP, PANEL_VPS2_TEXTMSG_VPS2SWP, str);
-		}
-		
-		if(vps2_sweep_cnt == 256)
-		{
-			plot_handle_vps2_arm_mag = PlotXY (panelVPS2SWP,
-											   PANEL_VPS2_GRAPH_VPS2_SWEEP,
-											   control_x, arm_magnitude_swp, 256,
-											   VAL_DOUBLE, VAL_DOUBLE,
-											   VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											   VAL_SOLID, 1, VAL_RED);
-	    			
-			plot_handle_vps2_I_mag = PlotXY (panelVPS2SWP,
-											 PANEL_VPS2_GRAPH_VPS2_SWEEP,
-											 control_x, I_magnitude_swp, 256,
-											 VAL_DOUBLE, VAL_DOUBLE,
-											 VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											 VAL_SOLID, 1, VAL_BLUE);
-	    	
-			plot_handle_vps2_Q_mag = PlotXY (panelVPS2SWP,
-											 PANEL_VPS2_GRAPH_VPS2_SWEEP,
-											 control_x, Q_magnitude_swp, 256,
-											 VAL_DOUBLE, VAL_DOUBLE,
-											 VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											 VAL_SOLID, 1, VAL_GREEN);
-	    	
-			plot_handle_vps2_com_mag = PlotXY (panelVPS2SWP,
-											   PANEL_VPS2_GRAPH_VPS2_SWEEP,
-											   control_x, com_magnitude_swp, 256,
-											   VAL_DOUBLE, VAL_DOUBLE,
-											   VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											   VAL_SOLID, 1, VAL_DK_RED);
-	    	
-	    	plot_handle_vps2_arm_phase = PlotXY (panelVPS2SWP,
-											  PANEL_VPS2_GRAPH_VPS2_SWEEP2,
-											  control_x, arm_phase_swp, 256,
-											  VAL_DOUBLE, VAL_DOUBLE,
-											  VAL_FAT_LINE, VAL_EMPTY_SQUARE,
-											  VAL_SOLID, 1, VAL_RED);		
-	    	
-	    	VPS2_sweep_flag =0;
-	    	vps2_sweep_cnt =0;
-	    	
-	    	Fmt (str, "%d%s", 100,"[%]");
-			SetCtrlVal (panelVPS2SWP, PANEL_VPS2_TEXTMSG_VPS2SWP, str);
-		}
-		
-
-		
-		Receive_TLC_info = 0;
-		
-		
-		if(vps2_sweep_cnt<256)
-		{
-			//1. DAC control
-			cmd.type = 0x00;
-			cmd.code = 0xEA;	//exteranl TLC block
-			cmd.payload_length = 0x02;
-			cmd.payload[1] = 03;	//VPS2 gain
-			SetCtrlVal (panelLM, PANEL_LM_NUMERIC_VPS2, vps2_sweep_cnt);
-			cmd.payload[0] = vps2_sweep_cnt;
-			Fmt (str, "%f%s", ((double)vps2_sweep_cnt)*2.8/255,"[V]");
-			SetCtrlVal (panelLM, PANEL_LM_TEXTMSG_VPS2CTRL, str);
-			send_msg();
-			
-			Delay(0.03);
-			
-			//2. measure command
-			cmd.type = 0x00;
-			cmd.code = 0xE1;	//Auto-leakage measure
-			cmd.payload_length = 0x00;	//payload length
-			send_msg();
-			
-			vps2_sweep_cnt++;
-			
-		}
-		
-	}
-}
 
