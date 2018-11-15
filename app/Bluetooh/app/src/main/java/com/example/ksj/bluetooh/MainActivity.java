@@ -128,21 +128,10 @@ public class MainActivity extends AppCompatActivity {
 
         btnOff.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                char buff[100]={0,};
-                cmd_formating(buffer, type);
-                bt.send(buff,true);
+                bt.send("Off",true);
                 btnOn.setVisibility(View.VISIBLE);
                 btnOff.setVisibility(View.INVISIBLE);
             }
         });
     }
-}
-#define preamble 0xBB
-        #define msg_type_cmd 0x00
-void cmd_formating(char * buffer, int type)
-{
-    buffer[0]=preamble;
-    bufferr[1]=msg_type_cmd;
-
-
 }
