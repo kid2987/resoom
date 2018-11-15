@@ -1,0 +1,362 @@
+[Workspace Header]
+Version = 1501
+Pathname = "/e/c_works/resoom/ctrl_emulator/Reader_control.cws"
+CVI Dir = "/e/program files (x86)/national instruments/cvi2015"
+CVI Shared Dir = "/E/Program Files (x86)/National Instruments/Shared/CVI"
+CVI Pub Local Dir = "/C/ProgramData/National Instruments/CVI2015"
+CVI Pub Global Dir = "/C/ProgramData/National Instruments/CVI"
+IVI Standard Root Dir = "/C/Program Files (x86)/IVI Foundation/IVI"
+IVI Standard Root 64-bit Dir = "/C/Program Files/IVI Foundation/IVI"
+VXIplug&play Framework Dir = "/C/Program Files (x86)/IVI Foundation/VISA/winnt"
+VXIplug&play Framework 64-bit Dir = "/C/Program Files/IVI Foundation/VISA/win64"
+Number of Projects = 1
+Active Project = 1
+Project 0001 = "resoom_crtl_emulator.prj"
+Project 0001 Folder Include Files Collapsed = True
+Project 0001 FolderId 1 Collapsed = True
+Drag Bar Left = 221
+Window Top = 31
+Window Left = 766
+Window Bottom = 928
+Window Right = 2380
+Maximized = False
+Maximized Children = True
+Max32 Number Of Errors = 20
+Track Include File Dependencies = True
+Prompt For Missing Includes = True
+Stop On First Error File = False
+Bring Up Err Win At Start = True
+Bring Up Err Win For Errors = False
+Save Changes Before Running = "Always"
+Save Changes Before Compiling = "Always"
+Hide Windows = False
+Break At First Statement = False
+Sort Type = "File Name"
+Number of Opened Files = 5
+Window Confinement Region Enabled = True
+MainColumnWidth = 204
+FileDateColumnWidth = 70
+FileSizeColumnWidth = 70
+
+[Project Header 0001]
+Version = 1501
+Don't Update DistKit = False
+Platform Code = 4
+Build Configuration = "Debug"
+Warn User If Debugging Release = 1
+Batch Build Release = True
+Batch Build Debug = True
+
+[File 0001]
+Path = "/e/c_works/resoom/ctrl_emulator/excel2000.fp"
+File Type = "Function Panel"
+Disk Date = 3572427675
+In Projects = "1,"
+
+[File 0002]
+Path = "/e/c_works/resoom/ctrl_emulator/msdxm.fp"
+File Type = "Function Panel"
+Disk Date = 3572427678
+In Projects = "1,"
+Window Top = 332
+Window Left = 166
+Window Height = 400
+Window Width = 400
+
+[File 0003]
+Path = "/e/c_works/resoom/ctrl_emulator/main.c"
+File Type = "CSource"
+Disk Date = 3624342436
+In Projects = "1,"
+Window Top = 43
+Window Left = 2
+Window Z-Order = 3
+Source Window State = "1,289,290,290,0,20,20,0,0,133,0,375,0,7,0,49,265,0,280,51,670,859,1,29,"
+Line Tags = "275,862,1123,1268,"
+
+[File 0004]
+Path = "/e/c_works/resoom/ctrl_emulator/Reader_protocol.c"
+File Type = "CSource"
+Disk Date = 3624338749
+In Projects = "1,"
+Window Top = 126
+Window Left = 58
+Window Z-Order = 1
+Source Window State = "1,559,645,645,0,12,12,0,0,222,0,0,0,0,0,48,0,0,22,19,349,608,1,0,"
+Line Tags = "124,232,290,305,"
+
+[File 0005]
+Path = "/e/c_works/resoom/ctrl_emulator/main_UI.uir"
+File Type = "User Interface Resource"
+Disk Date = 3624341833
+In Projects = "1,"
+Window Top = 36
+Window Left = -215
+Window Height = 746
+Window Width = 1176
+Window Z-Order = 5
+
+[File 0006]
+Path = "/e/c_works/resoom/ctrl_emulator/tx_leakage_control.c"
+File Type = "CSource"
+Disk Date = 3572427709
+In Projects = "1,"
+Window Top = 102
+Window Left = 80
+Window Z-Order = 4
+Source Window State = "1,21,21,21,85,86,86,0,0,97,0,4,0,4,0,31,0,0,35,65,430,644,1,0,"
+
+[File 0007]
+Path = "/e/c_works/resoom/ctrl_emulator/command_batch.c"
+File Type = "CSource"
+Disk Date = 3624330838
+In Projects = "1,"
+Window Top = 68
+Window Left = -227
+Window Z-Order = 2
+Source Window State = "1,100,102,100,0,0,0,0,0,138,0,2,0,2,0,47,0,0,28,120,636,887,1,0,"
+
+[File 0008]
+Path = "/e/c_works/resoom/ctrl_emulator/misc_util.c"
+File Type = "CSource"
+Disk Date = 3572427703
+In Projects = "1,"
+Window Top = 40
+Window Left = 10
+Source Window State = "1,40,62,62,0,1,1,0,0,0,0,2,0,2,0,0,37,0,58,46,557,853,1,0,"
+
+[File 0009]
+Path = "/e/c_works/resoom/ctrl_emulator/SPI_Driver.c"
+File Type = "CSource"
+Disk Date = 3572427709
+In Projects = "1,"
+Window Top = 32
+Window Left = 6
+Source Window State = "1,18,1852,18,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2,27,349,511,1,0,"
+
+[File 0010]
+Path = "/e/c_works/resoom/ctrl_emulator/command_batch.h"
+File Type = "Include"
+Disk Date = 3572427699
+In Projects = "1,"
+Window Top = 163
+Window Left = 78
+Source Window State = "1,34,34,34,0,44,44,0,0,0,0,0,0,0,0,0,19,0,33,27,349,511,1,0,"
+
+[File 0011]
+Path = "/e/c_works/resoom/ctrl_emulator/demo.h"
+File Type = "Include"
+Disk Date = 0
+In Projects = "1,"
+Window Top = 92
+Window Left = 38
+Source Window State = "1,30,30,30,0,21,21,0,0,0,0,0,0,0,0,0,0,0,13,38,349,511,1,0,"
+
+[File 0012]
+Path = "/e/c_works/resoom/ctrl_emulator/demo_UI.h"
+File Type = "Include"
+Disk Date = 0
+In Projects = "1,"
+Window Top = 182
+Window Left = 86
+Source Window State = "1,28,28,28,9,35,9,0,0,0,0,0,0,0,0,0,22,0,28,20,349,511,1,0,"
+
+[File 0013]
+Path = "/e/c_works/resoom/ctrl_emulator/global.h"
+File Type = "Include"
+Disk Date = 3624338385
+In Projects = "1,"
+Window Top = 48
+Window Left = 8
+Source Window State = "1,228,228,228,17,32,32,0,3,0,0,0,0,0,0,0,215,0,228,17,349,511,1,0,"
+
+[File 0014]
+Path = "/e/c_works/resoom/ctrl_emulator/main_UI.h"
+File Type = "Include"
+Disk Date = 3624341775
+In Projects = "1,"
+Window Top = 122
+Window Left = 54
+Source Window State = "1,89,89,89,9,41,41,0,0,0,0,0,0,0,0,0,77,0,91,101,349,686,1,0,"
+
+[File 0015]
+Path = "/e/c_works/resoom/ctrl_emulator/misc_util.h"
+File Type = "Include"
+Disk Date = 3572427704
+In Projects = "1,"
+Window Top = 168
+Window Left = 70
+Source Window State = "1,33,33,33,13,22,22,0,3,0,0,0,0,0,0,0,22,0,33,13,349,511,1,0,"
+
+[File 0016]
+Path = "/e/c_works/resoom/ctrl_emulator/Reader_protocol.h"
+File Type = "Include"
+Disk Date = 3624338080
+In Projects = "1,"
+Window Top = 44
+Window Left = 431
+Source Window State = "1,53,53,53,0,54,54,0,0,0,0,0,0,0,0,0,32,0,52,0,349,511,1,0,"
+
+[File 0017]
+Path = "/e/c_works/resoom/ctrl_emulator/SPI_Driver.h"
+File Type = "Include"
+Disk Date = 3572427710
+In Projects = "1,"
+Window Top = 62
+Window Left = 22
+Source Window State = "1,6,8,8,0,37,37,0,0,0,0,0,0,0,0,0,0,0,6,0,349,511,1,0,"
+
+[File 0018]
+Path = "/e/c_works/resoom/ctrl_emulator/TLC_UI.h"
+File Type = "Include"
+Disk Date = 0
+In Projects = "1,"
+Window Top = 182
+Window Left = 86
+Source Window State = "1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14,43,349,511,1,0,"
+
+[File 0019]
+Path = "/e/c_works/resoom/ctrl_emulator/tx_leakage_control.h"
+File Type = "Include"
+Disk Date = 3572427710
+In Projects = "1,"
+Window Top = 212
+Window Left = 102
+Source Window State = "1,8,8,8,5,21,21,0,0,0,0,0,0,0,0,0,0,0,11,30,349,511,1,0,"
+
+[File 0020]
+Path = "/e/c_works/resoom/ctrl_emulator/excel2000.c"
+File Type = "CSource"
+Disk Date = 3572427703
+In Projects = "1,"
+Window Top = 122
+Window Left = 54
+Source Window State = "1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,349,511,0,0,"
+
+[File 0021]
+Path = "/e/c_works/resoom/ctrl_emulator/excel2000.h"
+File Type = "Include"
+Disk Date = 3572427702
+In Projects = "1,"
+Window Top = 330
+Window Left = 63
+Source Window State = "1,7318,7318,7318,16,35,35,0,3,0,0,0,0,0,0,0,7306,0,7318,16,349,511,1,0,"
+
+[Tab Order]
+Tab 0001 = "/e/c_works/resoom/ctrl_emulator/Reader_protocol.c"
+Tab 0002 = "/e/c_works/resoom/ctrl_emulator/main.c"
+Tab 0003 = "/e/c_works/resoom/ctrl_emulator/main_UI.uir"
+Tab 0004 = "/e/c_works/resoom/ctrl_emulator/tx_leakage_control.c"
+Tab 0005 = "/e/c_works/resoom/ctrl_emulator/command_batch.c"
+
+[Default Build Config 0001 Debug]
+Generate Browse Info = True
+Enable Uninitialized Locals Runtime Warning = True
+Batch Build = True
+Profile = "Disabled"
+Debugging Level = "Standard"
+Execution Trace = "Disabled"
+Command Line Args = ""
+Working Directory = ""
+Environment Options = ""
+External Process Path = ""
+
+[Default Build Config 0001 Release]
+Generate Browse Info = True
+Enable Uninitialized Locals Runtime Warning = True
+Batch Build = True
+Profile = "Disabled"
+Debugging Level = "Standard"
+Execution Trace = "Disabled"
+Command Line Args = ""
+Working Directory = ""
+Environment Options = ""
+External Process Path = ""
+
+[Default Build Config 0001 Debug64]
+Generate Browse Info = True
+Enable Uninitialized Locals Runtime Warning = True
+Batch Build = False
+Profile = "Disabled"
+Debugging Level = "Standard"
+Execution Trace = "Disabled"
+Command Line Args = ""
+Working Directory = ""
+Environment Options = ""
+External Process Path = ""
+
+[Default Build Config 0001 Release64]
+Generate Browse Info = True
+Enable Uninitialized Locals Runtime Warning = True
+Batch Build = False
+Profile = "Disabled"
+Debugging Level = "Standard"
+Execution Trace = "Disabled"
+Command Line Args = ""
+Working Directory = ""
+Environment Options = ""
+External Process Path = ""
+
+[Build Dependencies 0001]
+Number of Dependencies = 0
+
+[Build Options 0001]
+Generate Browse Info = True
+Enable Uninitialized Locals Runtime Warning = True
+Execution Trace = "Disabled"
+Profile = "Disabled"
+Debugging Level = "Standard"
+Break On Library Errors = True
+Break On First Chance Exceptions = False
+
+[Execution Target 0001]
+Execution Target Address = "Local desktop computer"
+Execution Target Port = 0
+Execution Target Type = 0
+
+[SCC Options 0001]
+Use global settings = True
+SCC Provider = ""
+SCC Project = ""
+Local Path = ""
+Auxiliary Path = ""
+Perform Same Action For .h File As For .uir File = "Ask"
+Perform Same Action For .cds File As For .prj File = "Ask"
+Username = ""
+Comment = ""
+Use Default Username = False
+Use Default Comment = False
+Suppress CVI Error Messages = False
+Always show confirmation dialog = True
+
+[DLL Debugging Support 0001]
+External Process Path = ""
+
+[Command Line Args 0001]
+Command Line Args = ""
+Working Directory = ""
+Environment Options = ""
+
+[Watch 1]
+Watch Expression = "RFRegCtrlModeSpi"
+
+[Watch 2]
+Watch Expression = "ItemTableRepeat_flag"
+
+[Watch 3]
+Watch Expression = "SPI_CLK_PIN"
+
+[Watch 4]
+Watch Expression = "rsp.payload_length"
+
+[Watch 5]
+Watch Expression = "temp8"
+
+[Watch 6]
+Watch Expression = "sin"
+
+[Distributions]
+Active Index = 1
+AbsCDSPath 0001 = "/e/c_works/resoom/ctrl_emulator/resoom_crtl_emulator.cds"
+RelCDSPath 0001 = "resoom_crtl_emulator.cds"
+
