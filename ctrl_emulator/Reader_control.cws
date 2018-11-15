@@ -15,10 +15,10 @@ Project 0001 = "resoom_crtl_emulator.prj"
 Project 0001 Folder Include Files Collapsed = True
 Project 0001 FolderId 1 Collapsed = True
 Drag Bar Left = 221
-Window Top = 114
-Window Left = 845
-Window Bottom = 1011
-Window Right = 2459
+Window Top = 35
+Window Left = 1268
+Window Bottom = 932
+Window Right = 2462
 Maximized = False
 Maximized Children = True
 Max32 Number Of Errors = 20
@@ -42,7 +42,7 @@ FileSizeColumnWidth = 70
 Version = 1501
 Don't Update DistKit = False
 Platform Code = 4
-Build Configuration = "Release"
+Build Configuration = "Debug"
 Warn User If Debugging Release = 1
 Batch Build Release = True
 Batch Build Debug = True
@@ -70,8 +70,8 @@ Disk Date = 3625091023
 In Projects = "1,"
 Window Top = 43
 Window Left = 2
-Window Z-Order = 2
-Source Window State = "1,836,836,836,77,92,92,0,0,133,0,375,0,7,0,49,281,0,286,25,670,859,1,29,"
+Window Z-Order = 3
+Source Window State = "1,349,349,349,16,24,24,0,0,133,0,375,0,7,0,49,328,0,356,13,670,859,1,29,"
 Line Tags = "274,701,804,949,"
 
 [File 0004]
@@ -82,7 +82,7 @@ In Projects = "1,"
 Window Top = 126
 Window Left = 58
 Window Z-Order = 1
-Source Window State = "1,339,339,339,33,44,44,0,0,222,0,0,0,0,0,48,357,0,385,176,349,608,1,0,"
+Source Window State = "1,96,96,96,33,40,40,0,0,152,0,0,0,0,0,45,81,0,85,72,349,608,1,0,"
 Line Tags = "122,230,288,327,"
 
 [File 0005]
@@ -94,7 +94,7 @@ Window Top = 36
 Window Left = -215
 Window Height = 746
 Window Width = 1176
-Window Z-Order = 7
+Window Z-Order = 2
 
 [File 0006]
 Path = "/e/c_works/resoom/ctrl_emulator/command_batch.c"
@@ -103,7 +103,7 @@ Disk Date = 3624330838
 In Projects = "1,"
 Window Top = 68
 Window Left = -227
-Window Z-Order = 5
+Window Z-Order = 6
 Source Window State = "1,100,102,100,0,0,0,0,0,138,0,2,0,2,0,47,58,0,75,44,636,887,1,0,"
 
 [File 0007]
@@ -123,10 +123,30 @@ Disk Date = 3625089188
 In Projects = "1,"
 Window Top = 32
 Window Left = 6
-Window Z-Order = 6
+Window Z-Order = 7
 Source Window State = "1,9,9,9,0,22,22,0,0,75,0,0,0,0,0,25,0,0,9,0,349,511,1,0,"
 
 [File 0009]
+Path = "/e/c_works/resoom/ctrl_emulator/msdxm.c"
+File Type = "CSource"
+Disk Date = 3572427707
+In Projects = ""
+Window Top = 126
+Window Left = 58
+Window Z-Order = 4
+Source Window State = "1,0,0,0,0,0,0,0,0,90,0,0,0,0,0,25,16208,0,16246,36,349,608,1,0,"
+
+[File 0010]
+Path = "/e/Program Files (x86)/National Instruments/CVI2015/include/utility.h"
+File Type = "Include"
+Disk Date = 3548851200
+In Projects = ""
+Window Top = 95
+Window Left = 42
+Window Z-Order = 5
+Source Window State = "1,0,0,0,0,0,0,0,0,91,0,0,0,0,0,25,613,0,616,71,349,608,1,0,"
+
+[File 0011]
 Path = "/e/c_works/resoom/ctrl_emulator/command_batch.h"
 File Type = "Include"
 Disk Date = 3572427699
@@ -135,7 +155,7 @@ Window Top = 163
 Window Left = 78
 Source Window State = "1,34,34,34,0,44,44,0,0,0,0,0,0,0,0,0,19,0,33,27,349,511,1,0,"
 
-[File 0010]
+[File 0012]
 Path = "/e/c_works/resoom/ctrl_emulator/demo.h"
 File Type = "Include"
 Disk Date = 0
@@ -144,7 +164,7 @@ Window Top = 92
 Window Left = 38
 Source Window State = "1,30,30,30,0,21,21,0,0,0,0,0,0,0,0,0,0,0,13,38,349,511,1,0,"
 
-[File 0011]
+[File 0013]
 Path = "/e/c_works/resoom/ctrl_emulator/demo_UI.h"
 File Type = "Include"
 Disk Date = 0
@@ -153,7 +173,7 @@ Window Top = 182
 Window Left = 86
 Source Window State = "1,28,28,28,9,35,9,0,0,0,0,0,0,0,0,0,22,0,28,20,349,511,1,0,"
 
-[File 0012]
+[File 0014]
 Path = "/e/c_works/resoom/ctrl_emulator/global.h"
 File Type = "Include"
 Disk Date = 3624338385
@@ -162,7 +182,7 @@ Window Top = 48
 Window Left = 8
 Source Window State = "1,228,228,228,17,32,32,0,3,0,0,0,0,0,0,0,215,0,228,17,349,511,1,0,"
 
-[File 0013]
+[File 0015]
 Path = "/e/c_works/resoom/ctrl_emulator/main_UI.h"
 File Type = "Include"
 Disk Date = 3625089081
@@ -171,7 +191,7 @@ Window Top = 122
 Window Left = 54
 Source Window State = "1,89,89,89,9,41,41,0,0,0,0,0,0,0,0,0,77,0,91,101,349,686,1,0,"
 
-[File 0014]
+[File 0016]
 Path = "/e/c_works/resoom/ctrl_emulator/misc_util.h"
 File Type = "Include"
 Disk Date = 3572427704
@@ -180,7 +200,7 @@ Window Top = 168
 Window Left = 70
 Source Window State = "1,33,33,33,13,22,22,0,3,0,0,0,0,0,0,0,22,0,33,13,349,511,1,0,"
 
-[File 0015]
+[File 0017]
 Path = "/e/c_works/resoom/ctrl_emulator/Reader_protocol.h"
 File Type = "Include"
 Disk Date = 3624338080
@@ -189,7 +209,7 @@ Window Top = 44
 Window Left = 431
 Source Window State = "1,53,53,53,0,54,54,0,0,0,0,0,0,0,0,0,32,0,52,0,349,511,1,0,"
 
-[File 0016]
+[File 0018]
 Path = "/e/c_works/resoom/ctrl_emulator/SPI_Driver.h"
 File Type = "Include"
 Disk Date = 3572427710
@@ -198,7 +218,7 @@ Window Top = 62
 Window Left = 22
 Source Window State = "1,6,8,8,0,37,37,0,0,0,0,0,0,0,0,0,0,0,6,0,349,511,1,0,"
 
-[File 0017]
+[File 0019]
 Path = "/e/c_works/resoom/ctrl_emulator/TLC_UI.h"
 File Type = "Include"
 Disk Date = 0
@@ -207,7 +227,7 @@ Window Top = 182
 Window Left = 86
 Source Window State = "1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,14,43,349,511,1,0,"
 
-[File 0018]
+[File 0020]
 Path = "/e/c_works/resoom/ctrl_emulator/tx_leakage_control.h"
 File Type = "Include"
 Disk Date = 3572427710
@@ -216,7 +236,7 @@ Window Top = 212
 Window Left = 102
 Source Window State = "1,8,8,8,5,21,21,0,0,0,0,0,0,0,0,0,0,0,11,30,349,511,1,0,"
 
-[File 0019]
+[File 0021]
 Path = "/e/c_works/resoom/ctrl_emulator/excel2000.c"
 File Type = "CSource"
 Disk Date = 3572427703
@@ -225,7 +245,7 @@ Window Top = 122
 Window Left = 54
 Source Window State = "1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,349,511,0,0,"
 
-[File 0020]
+[File 0022]
 Path = "/e/c_works/resoom/ctrl_emulator/excel2000.h"
 File Type = "Include"
 Disk Date = 3572427702
@@ -233,26 +253,6 @@ In Projects = "1,"
 Window Top = 330
 Window Left = 63
 Source Window State = "1,7318,7318,7318,16,35,35,0,3,0,0,0,0,0,0,0,7306,0,7318,16,349,511,1,0,"
-
-[File 0021]
-Path = "/e/c_works/resoom/ctrl_emulator/msdxm.c"
-File Type = "CSource"
-Disk Date = 3572427707
-In Projects = ""
-Window Top = 126
-Window Left = 58
-Window Z-Order = 3
-Source Window State = "1,0,0,0,0,0,0,0,0,90,0,0,0,0,0,25,16208,0,16246,36,349,608,1,0,"
-
-[File 0022]
-Path = "/e/Program Files (x86)/National Instruments/CVI2015/include/utility.h"
-File Type = "Include"
-Disk Date = 3548851200
-In Projects = ""
-Window Top = 95
-Window Left = 42
-Window Z-Order = 4
-Source Window State = "1,0,0,0,0,0,0,0,0,91,0,0,0,0,0,25,613,0,616,71,349,608,1,0,"
 
 [Tab Order]
 Tab 0001 = "/e/c_works/resoom/ctrl_emulator/Reader_protocol.c"
